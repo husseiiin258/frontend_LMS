@@ -28,15 +28,11 @@ const UpdateInstructor = () => {
     setInstructor({ ...Instructor, loading: true });
     axios
 
-      .get(
-        "https://learing-management-system.onrender.com/api/v1/admin/users/" +
-          id,
-        {
-          headers: {
-            Authorization: `Bearer  ${auth.token}`,
-          },
-        }
-      )
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/v1/admin/users/" + id, {
+        headers: {
+          Authorization: `Bearer  ${auth.token}`,
+        },
+      })
       .then((resp) => {
         console.log(resp);
         setInstructor({
@@ -55,8 +51,7 @@ const UpdateInstructor = () => {
     axios
 
       .put(
-        "https://learing-management-system.onrender.com/api/v1/admin/users/" +
-          id,
+        process.env.REACT_APP_BACKEND_URL + "/api/v1/admin/users/" + id,
         { email: Instructor.email, phone: Instructor.phone },
         {
           headers: {

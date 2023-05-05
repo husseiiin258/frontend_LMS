@@ -21,26 +21,20 @@ const RegisterPage = () => {
     e.preventDefault();
     setRegisterForm({ ...RegisterForm, loading: true, err: [] });
     axios
-      .post(
-        "https://learing-management-system.onrender.com/api/v1/auth/register",
-        {
-          email: RegisterForm.email,
-          password: RegisterForm.password,
-          name: RegisterForm.name,
-          phone: RegisterForm.phone,
-        }
-      )
+      .post(process.env.REACT_APP_BACKEND_URL + "/api/v1/auth/register", {
+        email: RegisterForm.email,
+        password: RegisterForm.password,
+        name: RegisterForm.name,
+        phone: RegisterForm.phone,
+      })
       .then((resp) => {
         console.log(resp);
         setRegisterForm({ ...RegisterForm, loading: false, err: [] });
         axios
-          .post(
-            "https://learing-management-system.onrender.com/api/v1/auth/login",
-            {
-              email: RegisterForm.email,
-              password: RegisterForm.password,
-            }
-          )
+          .post(process.env.REACT_APP_BACKEND_URL + "/api/v1/auth/login", {
+            email: RegisterForm.email,
+            password: RegisterForm.password,
+          })
           .then((res) => {
             setAuthUser(res.data);
             navigate("/");

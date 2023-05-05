@@ -23,7 +23,7 @@ const AddCourse = () => {
     axios
       // hahkod el get mn el backend
       .post(
-        "https://learing-management-system.onrender.com/api/v1/admin/courses",
+        process.env.REACT_APP_BACKEND_URL + "/api/v1/admin/courses",
         {
           name: Courses.name,
           code: Courses.Code,

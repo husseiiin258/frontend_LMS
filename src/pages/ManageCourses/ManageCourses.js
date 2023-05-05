@@ -18,14 +18,11 @@ const ManageCourses = () => {
     setCourses({ ...Courses, loading: true });
     axios
       // hahkod el get mn el backend
-      .get(
-        "https://learing-management-system.onrender.com/api/v1/admin/courses",
-        {
-          headers: {
-            Authorization: `Bearer  ${auth.token}`,
-          },
-        }
-      )
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/v1/admin/courses", {
+        headers: {
+          Authorization: `Bearer  ${auth.token}`,
+        },
+      })
       .then((resp) => {
         console.log(resp);
         setCourses({ ...Courses, results: resp.data.data, loading: false });
@@ -44,8 +41,7 @@ const ManageCourses = () => {
     axios
       // hahkod el get mn el backend
       .delete(
-        "https://learing-management-system.onrender.com/api/v1/admin/courses/" +
-          id,
+        process.env.REACT_APP_BACKEND_URL + "/api/v1/admin/courses/" + id,
         {
           headers: {
             Authorization: `Bearer  ${auth.token}`,

@@ -24,7 +24,8 @@ const CourseCard = (props) => {
     axios
       // hahkod el get mn el backend
       .post(
-        "https://learing-management-system.onrender.com/api/v1/student/courses/" +
+        process.env.REACT_APP_BACKEND_URL +
+          "/api/v1/student/courses/" +
           id +
           "/register",
         {
@@ -43,32 +44,6 @@ const CourseCard = (props) => {
         console.log(err);
       });
   };
-  // useEffect(() => {
-  //   setRegisterCourses({ ...RegisterCourses, loading: true });
-  //   axios
-  //     // hahkod el get mn el backend
-  //     .get(
-  //       "https://learing-management-system.onrender.com/api/v1/student/courses/" +
-  //         id +
-  //         "/register",
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer  ${auth.token}`,
-  //         },
-  //       }
-  //     )
-  //     .then((resp) => {
-  //       console.log(resp);
-  //       setRegisterCourses({
-  //         ...RegisterCourses,
-  //         name: resp.data.data.name,
-  //         id: resp.data.data.id,
-
-  //         // results: resp.data.data,
-  //         loading: false,
-  //       });
-  //     });
-  // }, []);
 
   return (
     <div>

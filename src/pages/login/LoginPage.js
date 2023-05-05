@@ -20,13 +20,10 @@ const LoginPage = () => {
     e.preventDefault();
     setLoginForm({ ...LoginForm, loading: true, err: [] });
     axios
-      .post(
-        "https://learing-management-system.onrender.com/api/v1/auth/login",
-        {
-          email: LoginForm.email,
-          password: LoginForm.password,
-        }
-      )
+      .post(process.env.REACT_APP_BACKEND_URL + "/api/v1/auth/login", {
+        email: LoginForm.email,
+        password: LoginForm.password,
+      })
       .then((resp) => {
         console.log(resp);
         setLoginForm({ ...LoginForm, loading: false, err: [] });

@@ -19,17 +19,14 @@ const AvailableCourses = () => {
     setCourses({ ...Courses, loading: true });
     axios
       // hahkod el get mn el backend
-      .get(
-        "https://learing-management-system.onrender.com/api/v1/student/courses",
-        {
-          headers: {
-            Authorization: `Bearer  ${auth.token}`,
-          },
-          params: {
-            search: search,
-          },
-        }
-      )
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/v1/student/courses", {
+        headers: {
+          Authorization: `Bearer  ${auth.token}`,
+        },
+        params: {
+          search: search,
+        },
+      })
       .then((resp) => {
         setCourses({ ...Courses, results: resp.data.data, loading: false });
         console.log(resp.data.data);

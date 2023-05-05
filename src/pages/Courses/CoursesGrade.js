@@ -19,20 +19,18 @@ const CoursesGrade = () => {
   useEffect(() => {
     setGrades({ ...Grades, loading: true });
     axios
-      .get(
-        `https://learing-management-system.onrender.com/api/v1/instructor/courses`,
-        {
-          headers: {
-            Authorization: `Bearer  ${auth.token}`,
-          },
-        }
-      )
+      .get(process.env.REACT_APP_BACKEND_URL + `/api/v1/instructor/courses`, {
+        headers: {
+          Authorization: `Bearer  ${auth.token}`,
+        },
+      })
       .then((res) => {
         res.data.data.map((el) => {
           axios
             // hahkod el get mn el backend
             .get(
-              "https://learing-management-system.onrender.com/api/v1/instructor/courses/" +
+              process.env.REACT_APP_BACKEND_URL +
+                "/api/v1/instructor/courses/" +
                 el.course_id +
                 "/students",
               {
@@ -74,7 +72,8 @@ const CoursesGrade = () => {
     axios
       // hahkod el get mn el backend
       .post(
-        "https://learing-management-system.onrender.com/api/v1/instructor/courses/" +
+        process.env.REACT_APP_BACKEND_URL +
+          "/api/v1/instructor/courses/" +
           el.course_id +
           "/students/" +
           el.id +

@@ -28,14 +28,11 @@ const ManageInstructors = () => {
     setInstructor({ ...Instructor, loading: true });
     axios
 
-      .get(
-        "https://learing-management-system.onrender.com/api/v1/admin/users",
-        {
-          headers: {
-            Authorization: `Bearer  ${auth.token}`,
-          },
-        }
-      )
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/v1/admin/users", {
+        headers: {
+          Authorization: `Bearer  ${auth.token}`,
+        },
+      })
       .then((resp) => {
         console.log(resp);
         setInstructor({
@@ -57,15 +54,11 @@ const ManageInstructors = () => {
   const DeleteInstructor = (id) => {
     axios
 
-      .delete(
-        "https://learing-management-system.onrender.com/api/v1/admin/users/" +
-          id,
-        {
-          headers: {
-            Authorization: `Bearer  ${auth.token}`,
-          },
-        }
-      )
+      .delete(process.env.REACT_APP_BACKEND_URL + "/api/v1/admin/users/" + id, {
+        headers: {
+          Authorization: `Bearer  ${auth.token}`,
+        },
+      })
       .then((resp) => {
         setInstructor({ ...Instructor, reload: Instructor.reload + 1 });
       })

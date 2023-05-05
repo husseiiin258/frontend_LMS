@@ -21,14 +21,11 @@ const MyCourses = () => {
   useEffect(() => {
     setMyCourses({ ...MyCourses, loading: true });
     axios
-      .get(
-        "https://learing-management-system.onrender.com/api/v1/student/grades",
-        {
-          headers: {
-            Authorization: `Bearer  ${auth.token}`,
-          },
-        }
-      )
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/v1/student/grades", {
+        headers: {
+          Authorization: `Bearer  ${auth.token}`,
+        },
+      })
       .then((resp) => {
         console.log(resp);
         setMyCourses({ ...MyCourses, results: resp.data, loading: false });

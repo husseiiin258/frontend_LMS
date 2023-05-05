@@ -21,15 +21,11 @@ const CourseInfo = () => {
     SetDetails({ ...Details, loading: true });
     axios
 
-      .get(
-        "https://learing-management-system.onrender.com/api/v1/admin/courses/" +
-          id,
-        {
-          headers: {
-            Authorization: `Bearer  ${auth.token}`,
-          },
-        }
-      )
+      .get(process.env.REACT_APP_BACKEND_URL + "/api/v1/admin/courses/" + id, {
+        headers: {
+          Authorization: `Bearer  ${auth.token}`,
+        },
+      })
 
       .then((resp) => {
         SetDetails((old) => ({ ...old, results: resp.data.data }));
@@ -37,7 +33,7 @@ const CourseInfo = () => {
         axios
 
           .get(
-            "https://learing-management-system.onrender.com/api/v1/admin/instructors",
+            process.env.REACT_APP_BACKEND_URL + "/api/v1/admin/instructors",
             {
               headers: {
                 Authorization: `Bearer  ${auth.token}`,
@@ -63,7 +59,8 @@ const CourseInfo = () => {
     axios
 
       .post(
-        "https://learing-management-system.onrender.com/api/v1/admin/courses/" +
+        process.env.REACT_APP_BACKEND_URL +
+          "/api/v1/admin/courses/" +
           Details.results.id +
           "/assign",
         {
